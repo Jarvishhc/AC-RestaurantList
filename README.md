@@ -5,7 +5,6 @@ This is a web application which allows user to do following things:
 + search restaurant by name or category
 
 ## Getting Started
----
 The following instructions will get you a copy of the project and the settings you need in order to run it on your local machine.
 
 ### Prerequisites
@@ -38,7 +37,6 @@ The following instructions will get you a copy of the project and the settings y
 4. Visit [http://localhost:3000](http://localhost:3000) for usage
 
 ## Features
----
 | Functionality | Description | 
 |---------------|-------------|
 | Index page    | View all restaurants |
@@ -46,7 +44,6 @@ The following instructions will get you a copy of the project and the settings y
 | Search restaurant | search restaurant by name or category |
 
 ## Snapshots
----
 - Index page
   ![Index page](https://github.com/Jarvishhc/AC-RestaurantList/blob/master/snapshot-index.png?raw=true)
 
@@ -58,5 +55,4 @@ The following instructions will get you a copy of the project and the settings y
 
 
 ## Authors
----
 [Jarvis Huang](https://github.com/Jarvishhc)
