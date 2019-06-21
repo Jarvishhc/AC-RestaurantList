@@ -34,15 +34,15 @@ app.get('/', (req, res) => {
     if (err) return console.error(err)
     return res.render('index', { restaurants: allRestaurants })
   })
-  // res.render('index', { restaurants: restaurantList.results })
 })
 
 // Show restaurant details
 app.get('/restaurants/:id', (req, res) => {
-  const result = restaurantList.results.find(item => {
-    return item.id.toString() === req.params.id
+  Restaurant.find({ id: req.params.id }, (err, target) => {
+    if (err) return console.error(err)
+    res.render('show', { restaurant: target[0] })
+    console.log(target)
   })
-  res.render('show', { restaurant: result })
 })
 
 // Show search results
