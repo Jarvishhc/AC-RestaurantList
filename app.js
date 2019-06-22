@@ -48,11 +48,14 @@ app.get('/restaurants/:id', (req, res) => {
 // Show search results
 app.get('/search', (req, res) => {
   const regex = RegExp(req.query.keyword, 'i')
-  const results = restaurantList.results.filter(item => {
-    return regex.test(item.name) || regex.test(item.category)
+
+  Restaurant.find((err, allRestaurants) => {
+    if (err) return console.error(err)
+    const results = allRestaurants.filter(item => {
+      return regex.test(item.name) || regex.test(item.category)
+    })
+    res.render('index', { restaurants: results, keyword: req.query.keyword })
   })
-  console.log(req.query.keyword)
-  res.render('index', { restaurants: results, keyword: req.query.keyword })
 })
 
 // Start listening on the Express server
