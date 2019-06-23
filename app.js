@@ -96,6 +96,19 @@ app.post('/createRestaurant', (req, res) => {
   })
 })
 
+// Delete a restaurant
+app.post('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, target) => {
+    if (err) return console.error(err)
+    console.log('here ')
+    target.remove(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
+    })
+
+  })
+})
+
 // Start listening on the Express server
 app.listen(port, () => {
   console.log(`Listening to http://localhost:${port}`)

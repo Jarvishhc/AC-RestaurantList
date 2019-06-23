@@ -42,7 +42,9 @@
           <div class="card-footer d-flex flex-sm-column flex-lg-row justify-content-between">
             <a href="/restaurants/{{this._id}}/edit" class="btn text-info">Edit</a>
             <a href="/restaurants/{{this._id}}" class="btn text-info">Detail</a>
-            <button type="button" class="btn text-danger">Delete</button>
+            <form action="/restaurants/{{this._id}}/delete" method="POST">
+              <button type="submit" class="btn text-danger">Delete</button>
+            </form>
           </div>
         </div>
         {{/each}}
