@@ -5,10 +5,19 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurantModel.js')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
+// Setting static files
+app.use(express.static('public'))
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/restaurants', { useNewUrlParser: true })
-
 const db = mongoose.connection
 
 // Connection error
@@ -20,15 +29,6 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('MongoDB connected!')
 })
-
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
-
-// User body-parser
-app.use(bodyParser.urlencoded({ extended: true }))
-
-// Setting static files
-app.use(express.static('public'))
 
 // ========== Routes setting ==========
 // Home page 
@@ -70,7 +70,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // Edit restaurant
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
     Object.assign(target, req.body)
@@ -97,7 +97,7 @@ app.post('/createRestaurant', (req, res) => {
 })
 
 // Delete a restaurant
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id/delete', (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
     console.log('here ')

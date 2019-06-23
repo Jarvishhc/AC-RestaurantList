@@ -1,6 +1,6 @@
 <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
 <div class="container mb-5">
-  <form action="/restaurants/{{restaurant._id}}" method="POST" class="needs-validation" novalidate>
+  <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST" class="needs-validation" novalidate>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="name">餐廳中文名稱</label>

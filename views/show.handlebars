@@ -41,7 +41,7 @@
       <div class="text-center mb-5">
         <a href="/restaurants/{{restaurant._id}}/edit" class="btn text-info">Edit</a>
         <a href="/restaurants/{{restaurant._id}}" class="btn text-info">Detail</a>
-        <form action="/restaurants/{{restaurant._id}}/delete" method="POST" class="d-inline">
+        <form action="/restaurants/{{restaurant._id}}/delete?_method=DELETE" method="POST" class="d-inline">
           <button type="submit" class="btn text-danger">Delete</button>
         </form>
       </div>
