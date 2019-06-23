@@ -78,6 +78,21 @@ header {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.customized-validation .form-control:invalid, .form-control.is-invalid {
+  border-color: #dc3545;
+  padding-right: 2.25rem;
+  background-repeat: no-repeat;
+  background-position: center right calc(2.25rem / 4);
+  background-size: calc(2.25rem / 2) calc(2.25rem / 2);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23d9534f' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+}
+
+.customized-validation .form-control:invalid ~ .invalid-feedback,
+.customized-validation .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+
 @media screen and (max-width: 992px) {
   .card img {
     height: 115px;

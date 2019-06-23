@@ -4,6 +4,7 @@ const port = 3000
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurantModel.js')
+const bodyParser = require('body-parser')
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/restaurants', { useNewUrlParser: true })
@@ -20,9 +21,11 @@ db.once('open', () => {
   console.log('MongoDB connected!')
 })
 
-
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+// User body-parser
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // Setting static files
 app.use(express.static('public'))
@@ -38,9 +41,9 @@ app.get('/', (req, res) => {
 
 // Show restaurant details
 app.get('/restaurants/:id', (req, res) => {
-  Restaurant.find({ id: req.params.id }, (err, target) => {
+  Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
-    res.render('show', { restaurant: target[0] })
+    res.render('show', { restaurant: target })
     console.log(target)
   })
 })
@@ -55,6 +58,26 @@ app.get('/search', (req, res) => {
       return regex.test(item.name) || regex.test(item.category)
     })
     res.render('index', { restaurants: results, keyword: req.query.keyword })
+  })
+})
+
+// Show restaurant's edit page
+app.get('/restaurants/:id/edit', (req, res) => {
+  Restaurant.findById(req.params.id, (err, target) => {
+    if (err) return console.error(err)
+    res.render('edit', { restaurant: target })
+  })
+})
+
+// Edit restaurant
+app.post('/restaurants/:id', (req, res) => {
+  Restaurant.findById(req.params.id, (err, target) => {
+    if (err) return console.error(err)
+    Object.assign(target, req.body)
+    target.save(err => {
+      if (err) return Console.error(err)
+      return res.redirect(`/restaurants/${req.params.id}`)
+    })
   })
 })
 

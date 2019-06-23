@@ -23,7 +23,7 @@
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
         {{#each restaurants}}
-        <a href="/restaurants/{{this.id}}" class="text-secondary">
+        <a href="/restaurants/{{this._id}}" class="text-secondary">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
             <div class="card-body p-3">
@@ -38,10 +38,10 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
             </div>
-            <div class="card-footer text-right">
-              <a href="#" class="btn btn-outline-info p-1">Edit</a>
-              <a href="#" class="btn btn-outline-info p-1">Detail</a>
-              <button type="submit" class="btn btn-outline-danger p-1">Delete</button>
+            <div class="card-footer d-flex flex-sm-column flex-lg-row justify-content-between">
+              <a href="/restaurants/{{this._id}}/edit" class="btn text-info">Edit</a>
+              <a href="/restaurants/{{this._id}}" class="btn text-info">Detail</a>
+              <button type="button" class="btn text-danger">Delete</button>
             </div>
           </div>
         </a>
