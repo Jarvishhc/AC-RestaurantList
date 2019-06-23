@@ -81,6 +81,21 @@ app.post('/restaurants/:id', (req, res) => {
   })
 })
 
+// Show 'create restaurant' page
+app.get('/new', (req, res) => {
+  return res.render('new')
+})
+
+// Create a restaurant
+app.post('/createRestaurant', (req, res) => {
+  const newRestaurant = Restaurant()
+  Object.assign(newRestaurant, req.body)
+  newRestaurant.save(err => {
+    if (err) return console.error(err)
+    return res.redirect(`/restaurants/${newRestaurant._id}`)
+  })
+})
+
 // Start listening on the Express server
 app.listen(port, () => {
   console.log(`Listening to http://localhost:${port}`)

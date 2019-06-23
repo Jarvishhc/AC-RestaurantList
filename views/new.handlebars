@@ -1,0 +1,53 @@
+<h1 class="mb-1 restaurant-show-title">新增餐廳</h1>
+<div class="container mb-5">
+  <form action="/createRestaurant" method="POST" class="needs-validation" novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name">餐廳中文名稱</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="中文名字(必填)" required>
+        <div class="invalid-tooltip">
+          此欄位為必填
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="name_en">餐廳英文名稱</label>
+        <input type="text" class="form-control" id="name_en" name="name_en" placeholder="英文名字(選填)">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="category">餐廳種類</label>
+        <input type="text" class="form-control" id="category" name="category" placeholder="餐廳種類(選填)">
+      </div>
+      <div class="form-group col-md-9">
+        <label for="image">照片連結</label>
+        <input type="text" class="form-control" id="image" name="image" placeholder="照片連結(選填)">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-9">
+        <label for="location">住址</label>
+        <input type="text" class="form-control" id="location" name="location" placeholder="住址(選填)">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="phone">電話</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="(選填: ex. 02 2570 1255)">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-9">
+        <label for="google_map">Google Map 連結</label>
+        <input type="text" class="form-control" id="google_map" name="google_map" placeholder="Google Map 連結(選填)">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="rating">評分</label>
+        <input type="text" class="form-control" id="rating" name="rating" placeholder="評分1~5(選填：ex. 4.3)">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">餐廳簡介</label>
+      <textarea class="form-control" id="description" name="description" placeholder="簡介(選填)"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">送出</button>
+  </form>
+</div>
