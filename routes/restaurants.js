@@ -41,12 +41,13 @@ router.get('/new', (req, res) => {
 })
 
 // Create a restaurant
-router.post('/create', (req, res) => {
+router.post('', (req, res) => {
   const newRestaurant = Restaurant()
   Object.assign(newRestaurant, req.body)
+  console.log(req.body)
   newRestaurant.save(err => {
     if (err) return console.error(err)
-    return res.redirect(`/ restaurants / ${newRestaurant._id}`)
+    return res.redirect(`/restaurants/${newRestaurant._id}`)
   })
 })
 
@@ -57,8 +58,6 @@ router.get('/:id', (req, res) => {
     res.render('show', { restaurant: target })
   })
 })
-
-
 
 // Show restaurant's edit page
 router.get('/:id/edit', (req, res) => {
@@ -75,13 +74,13 @@ router.put('/:id', (req, res) => {
     Object.assign(target, req.body)
     target.save(err => {
       if (err) return Console.error(err)
-      return res.redirect(`/ restaurants / ${req.params.id}`)
+      return res.redirect(`/restaurants/${req.params.id}`)
     })
   })
 })
 
 // Delete a restaurant
-router.delete('/:id/delete', (req, res) => {
+router.delete('/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
     console.log('here ')
