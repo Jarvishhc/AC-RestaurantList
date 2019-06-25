@@ -44,7 +44,6 @@ router.get('/new', (req, res) => {
 router.post('', (req, res) => {
   const newRestaurant = Restaurant()
   Object.assign(newRestaurant, req.body)
-  console.log(req.body)
   newRestaurant.save(err => {
     if (err) return console.error(err)
     return res.redirect(`/restaurants/${newRestaurant._id}`)
@@ -83,7 +82,6 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
-    console.log('here ')
     target.remove(err => {
       if (err) return console.error(err)
       return res.redirect('/')
