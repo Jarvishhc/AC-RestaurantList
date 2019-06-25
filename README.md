@@ -45,7 +45,7 @@ The following instructions will get you a copy of the project and the settings y
 
 ## Snapshots
 - Index page
-  ![Index page](https://github.com/Jarvishhc/AC-RestaurantList/blob/master/snapshot-index.png?raw=true)
+  ![Index page](https://github.com/Jarvishhc/AC-RestaurantList/blob/master/snapshot-index-update.png?raw=true)
 
 - Restaurant's detail information
   ![Detail information](https://github.com/Jarvishhc/AC-RestaurantList/blob/master/snapshot-details.png?raw=true)
