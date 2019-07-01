@@ -91,6 +91,7 @@ header {
 .customized-validation .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
 .form-control.is-invalid ~ .invalid-tooltip {
   display: block;
+  top: auto;
 }
 
 .mt-n200 {
