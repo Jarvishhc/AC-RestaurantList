@@ -33,6 +33,7 @@ db.once('open', () => {
 // ========== Routes setting ==========
 app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurants'))
+app.use('/users', require('./routes/users'))
 
 
 // Start listening on the Express server

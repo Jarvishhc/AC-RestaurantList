@@ -93,6 +93,10 @@ header {
   display: block;
 }
 
+.mt-n200 {
+  margin-top: -200px;
+}
+
 @media screen and (max-width: 992px) {
   .card img {
     height: 115px;
