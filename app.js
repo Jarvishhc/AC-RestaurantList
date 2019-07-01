@@ -6,6 +6,9 @@ const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurantModel.js')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const session = require('express-session')
+const passport = require('passport')
+
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -15,6 +18,26 @@ app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+// Set up express session
+app.use(session({
+  secret: 'adjflakjfdlkajflajdf',
+  resave: 'false',
+  saveUninitialized: 'flase'
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./config/passport')(passport)
+
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
+
+  next()
+})
+
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/restaurants', { useNewUrlParser: true })

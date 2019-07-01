@@ -9,6 +9,14 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+// Login validation
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login'
+  })(req, res, next)
+})
+
 // Register page
 router.get('/register', (req, res) => {
   res.render('register')
@@ -52,7 +60,7 @@ router.post('/register', (req, res) => {
 })
 
 // Logout
-router.get('/logout', (res, req) => {
+router.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/users/login')
 })
