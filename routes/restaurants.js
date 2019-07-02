@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/restaurantModel.js')
+const { authenticated } = require('../config/auth')
 
 // Show search results
-router.get('/search', (req, res) => {
+router.get('/search', authenticated, (req, res) => {
   const regex = RegExp(req.query.keyword, 'i')
   Restaurant.find((err, allRestaurants) => {
     if (err) return console.error(err)
@@ -14,7 +15,7 @@ router.get('/search', (req, res) => {
   })
 })
 
-router.get('/sorting', (req, res) => {
+router.get('/sorting', authenticated, (req, res) => {
   const regex = RegExp(req.query.keyword, 'i')
   const sortBy = Object.keys(req.query)[0]
   const sortValue = req.query[sortBy]
@@ -36,12 +37,12 @@ router.get('/sorting', (req, res) => {
 })
 
 // Show 'create restaurant' page
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   return res.render('new')
 })
 
 // Create a restaurant
-router.post('', (req, res) => {
+router.post('', authenticated, (req, res) => {
   const newRestaurant = Restaurant()
   Object.assign(newRestaurant, req.body)
   newRestaurant.save(err => {
@@ -51,7 +52,7 @@ router.post('', (req, res) => {
 })
 
 // Show restaurant details
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
     res.render('show', { restaurant: target })
@@ -59,7 +60,7 @@ router.get('/:id', (req, res) => {
 })
 
 // Show restaurant's edit page
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
     res.render('edit', { restaurant: target })
@@ -67,7 +68,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // Edit restaurant
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
     Object.assign(target, req.body)
@@ -79,7 +80,7 @@ router.put('/:id', (req, res) => {
 })
 
 // Delete a restaurant
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, target) => {
     if (err) return console.error(err)
     target.remove(err => {
