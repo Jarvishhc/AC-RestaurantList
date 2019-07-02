@@ -43,7 +43,6 @@ router.get('/new', authenticated, (req, res) => {
 
 // Create a restaurant
 router.post('', authenticated, (req, res) => {
-  console.log(req.body)
   const newRestaurant = Restaurant()
   Object.assign(newRestaurant, req.body)
   newRestaurant.userId = req.user._id
