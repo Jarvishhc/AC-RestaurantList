@@ -1,23 +1,23 @@
 <div class="row mt-n200">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <h1 class="text-center mb-3">Login</h1>
+      <h1 class="text-center mb-3">登入</h1>
       {{!-- 引用 message 這個 partial view --}}
       {{!-- {{> messages}} --}}
       <form action="/users/login" method="POST">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email">
+          <input type="email" id="email" name="email" class="form-control" placeholder="輸入Email">
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
+          <label for="password">密碼</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="輸入密碼">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-        <a href="/auth/facebook" class="btn btn-info btn-block">Facebook Login</a>
+        <button type="submit" class="btn btn-primary btn-block">登入</button>
+        <a href="/auth/facebook" class="btn btn-info btn-block">Facebook 登入</a>
       </form>
       <p class="lead mt-4">
-        Need Account? <a href="/users/register">Register</a>
+        尚未註冊? <a href="/users/register">註冊</a>
       </p>
     </div>
   </div>
