@@ -9,6 +9,9 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -57,6 +60,7 @@ db.once('open', () => {
 app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurants'))
 app.use('/users', require('./routes/users'))
+app.use('/auth', require('./routes/auths'))
 
 
 // Start listening on the Express server
